@@ -1,0 +1,35 @@
+// comment
+
+namespace test;
+
+
+abstract class SomeClass extends OtherClass implements SomeInterface, vendor\OtherInterface // comment
+{
+
+    use SomeTrait;
+
+    const int       MY_INT_CONSTANT     = 1; /* comment */
+    const float     MY_FLOAT_CONSTANT   = 0.1; // comment
+    const bool      MY_BOOL_CONSTANT    = false; // comment
+    const string    MT_STRING_CONSTANT  = "ok"; // comment
+
+    var $a;
+    var $b = 1;
+    public $c = 2;
+
+    public string myMethod();
+
+}
+
+namespace test;
+
+final class OtherClass extends MyClass /* comment */ {
+
+}
+
+class MyClass /* comment */ implements SomeInterface
+{
+
+}
+
+namespace test\myns\app_ns;
