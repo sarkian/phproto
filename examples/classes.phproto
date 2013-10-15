@@ -1,29 +1,23 @@
-// comment
-
-namespace test;
-
+namespace test\myns;
 
 abstract class SomeClass extends OtherClass implements SomeInterface, vendor\OtherInterface // comment
 {
 
+    /* Uses */
     use SomeTrait;
 
+    /* Constants */
     const int       MY_INT_CONSTANT     = 1; /* comment */
     const float     MY_FLOAT_CONSTANT   = 0.1; // comment
     const bool      MY_BOOL_CONSTANT    = false; // comment
     const string    MT_STRING_CONSTANT  = "ok"; // comment
 
     /* Properties */
-    var                 int                     $a;
-    var                 int                     $b = 1;
-    public static       string                  $c = "ok";
-    public static readonly string $a; // Yes, "readonly" is property modifier in this context.
-    protected           int                     $a;
-    protected static    int                     $b; // comment
-    public              float                   $c = 0.1;
-    public              bool                    $d = True; // comment
-    public              \myns\MyClass           $s = null;
-    private static      vendor\OtherClass[]     $_data = NULL;
+    var                 int             $a ;
+    public static       string          $c = "ok" ;
+    public readonly     string          $a ; // Yes, "readonly" is property modifier in this context.
+    public              \myns\MyClass   $s = null ;
+    protected static    vendor\Other[]  $_data = NULL ;
 
     /* Methods */
     public              string  myMethod ( void )
@@ -31,16 +25,14 @@ abstract class SomeClass extends OtherClass implements SomeInterface, vendor\Oth
     protected           int     doSomething( int $a [, MyType $b [, bool $c [, string $d]]] )
     protected static    int     doSomethingElse()  // comment
     public              int[]   my( void )
-    protected static myns\mytype[] m( void )
-    int doSome( void ) // control
+    protected static myns\cls[] m( void )
+    int doSome( void ) // Control. Should not work.
 
     /* Inherited methods */
-    public string OtherClass::someMethod( void )
-    public static void myns\MyOtherClass::myMethod( void )
+    public          string  OtherClass::someMethod( void )
+    public static   void    myns\MyOtherClass::myMethod( void )
 
 }
-
-namespace test;
 
 final class OtherClass extends MyClass /* comment */ {
 
