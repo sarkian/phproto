@@ -13,11 +13,29 @@ abstract class SomeClass extends OtherClass implements SomeInterface, vendor\Oth
     const bool      MY_BOOL_CONSTANT    = false; // comment
     const string    MT_STRING_CONSTANT  = "ok"; // comment
 
-    var $a;
-    var $b = 1;
-    public $c = 2;
+    /* Properties */
+    var                 int                     $a;
+    var                 int                     $b = 1;
+    public static       string                  $c = "ok";
+    public static readonly string $a; // Yes, "readonly" is property modifier in this context.
+    protected           int                     $a;
+    protected static    int                     $b; // comment
+    public              float                   $c = 0.1;
+    public              bool                    $d = True; // comment
+    public              \myns\MyClass           $s = null;
+    private static      vendor\OtherClass[]     $_data = NULL;
 
-    public string myMethod();
+    /* Methods */
+    public              string  myMethod ( void )
+    public static       string  otherMethod( int $a, MyType $b1 = null, bool $c = false, string $d = 'default value' )
+    protected           int     doSomething( int $a [, MyType $b [, bool $c [, string $d]]] )
+    protected static    int     doSomethingElse()
+    public              int[]   my( void )
+    protected static myns\mytype[] m( void )
+
+    /* Inherited methods */
+    public string OtherClass::someMethod( void )
+    public static void myns\MyOtherClass::myMethod( void )
 
 }
 
