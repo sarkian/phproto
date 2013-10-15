@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: phproto
 " Maintainer: Sarkian <root@dustus.org>
-" Last change: 2008 Oct 12
+" Last change: 2013 Oct 15
 
 if version < 600
     syntax clear
