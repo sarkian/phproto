@@ -1,17 +1,3 @@
-"{{{ Hieararchy
-"   phprotoNamespace
-"       phprotoNamespaceKeyword
-"       phprotoNamespaceName
-"   phprotoClass
-"       phprotoClassDefinition
-"           phprotoClassDefinitionKeyword (*phprotoKeyword)
-"           phprotoClassName (*phprotoName)
-"           phprotoClassImplements
-"               phprotoClassImplementsInterfaceName (*phprotoName)
-"       phprotoClassBody
-"           phprotoMethod
-"}}}
-
 "{{{ Init
 if !exists("main_syntax")
     if version < 600
@@ -26,13 +12,13 @@ let s:cpo_save = &cpo
 set cpo&vim
 "}}}
 
-"{{{ Комментарии, строки и числа
+"{{{ Common
 
-" Комментарии
+" Comments
 syn region phprotoComment start='/\*' end='\*/'
 syn region phprotoComment start='//' end="$"
 
-" Строки
+" Strings
 syn region phprotoString start=+"+ skip=+\\\\\|\\"+ end=+"+
 syn region phprotoString start=+'+ skip=+\\\\\|\\'+ end=+'+
 
@@ -53,7 +39,7 @@ syn case match
 " void
 syn keyword phprotoVoid contained void
 
-" Переменные
+" Variables
 syn match phprotoVariable "$[a-zA-Z_][a-zA-Z0-9_]*" contained
 
 "}}}
@@ -144,8 +130,8 @@ syn region phprotoClassPropertyValue start="\(\$\i\+\s*=\s*\)\@<=" end=";\|$" co
 
 "{{{ Метод класса
 "syn region phprotoClassMethod start="[a-zA-Z][a-zA-Z0-9\s\\\[\]]\+\s*(" end=";\|$" contained
-syn match phprotoClassMethod "\(public\|protected\|private\|static\|final\|abstract\)\s\+[^()]\+([^()]*)\(;\|$\)" contained
-    \ contains=phprotoClassMethodKeyword,phprotoClassMethodDefinition
+syn match phprotoClassMethod "\(public\|protected\|private\|static\|final\|abstract\)\s\+[^()]\+([^()]*).*\(;\|$\)" contained
+    \ contains=phprotoClassMethodKeyword,phprotoClassMethodDefinition,phprotoComment
 
 " Ключевые слова "public, protected, private, static, final, abstract"
 syn keyword phprotoClassMethodKeyword contained public protected private static final abstract nextgroup=phprotoClassMethodDefinition
@@ -178,9 +164,18 @@ syn region phprotoClassMethodArgument start="[a-zA-Z0-9_\\\[\]]\+\s\+\$[a-zA-Z0-
 
 " Тип аргумента метода
 syn region phprotoClassMethodArgType start="\(,\s*\|(\s*\)\@<=" end="\s\+\$"me=s contained
-
 "}}}
 
+"{{{ Функции
+syn match phprotoFunction "^\s*[a-zA-Z_\\][a-zA-Z0-9_\\:]*\s\+[a-zA-Z_\\][a-zA-Z0-9\_\\:]*\s*([^()]*).*\(;\|$\)"
+    \ contains=phprotoComment,phprotoFunctionType,phprotoClassMethodNameAndArgs
+
+" Возвращаемый тип функции
+syn region phprotoFunctionType start="\(^\s*\)\@<=" end="\s.*\(;\|$\)"me=s contained
+"}}}
+
+
+"hi phprotoFunction guifg=#ff0000
 
 "hi phprotoClass             guifg=#000000
 "hi phprotoClassDefinition   guifg=#ff0000   gui=bold
@@ -192,19 +187,9 @@ syn region phprotoClassMethodArgType start="\(,\s*\|(\s*\)\@<=" end="\s\+\$"me=s
 "hi phprotoClassMethodDefinition guifg=#000000 gui=italic
 "hi phprotoClassMethodArgs   guifg=#00ff00   gui=italic
 
-"{{{ Init
-let b:current_syntax = "phproto"
-if main_syntax == 'phproto'
-    unlet main_syntax
-endif
-let b:spell_options="contained"
-let &cpo = s:cpo_save
-unlet s:cpo_save
-"}}}
+"{{{ Links
 
-"{{{ Обобщения
-
-" Имена
+" Names
 hi def link phprotoNamespaceName                    phprotoName
 hi def link phprotoClassName                        phprotoName
 hi def link phprotoClassImplementsInterfaceName     phprotoName
@@ -212,7 +197,7 @@ hi def link phprotoClassUseTraitname                phprotoName
 hi def link phprotoClassConstantName                phprotoName
 hi def link phprotoClassMethodName                  phprotoName
 
-" Ключевые слова
+" Keywords
 hi def link phprotoNamespaceKeyword                 phprotoKeyword
 hi def link phprotoClassDefinitionKeyword           phprotoKeyword
 hi def link phprotoClassUseKeyword                  phprotoKeyword
@@ -220,16 +205,16 @@ hi def link phprotoClassConstantKeyword             phprotoKeyword
 hi def link phprotoClassPropertyKeyword             phprotoKeyword
 hi def link phprotoClassMethodKeyword               phprotoKeyword
 
-" Типы
+" Types
 hi def link phprotoClassConstantType                phprotoType
 hi def link phprotoClassPropertyType                phprotoType
 hi def link phprotoClassMethodType                  phprotoType
 hi def link phprotoClassMethodArgType               phprotoType
+hi def link phprotoFunctionType                     phprotoType
 
 "}}}
 
-
-"{{{ Цветовая схема
+"{{{ Colorscheme
 
 hi phprotoComment       guifg=#d75f00   gui=none
 hi phprotoString        guifg=#5faf00   gui=none
@@ -245,4 +230,13 @@ hi phprotoVariable      guifg=#d75f5f   gui=none
 
 " }}}
 
+"{{{ Init
+let b:current_syntax = "phproto"
+if main_syntax == 'phproto'
+    unlet main_syntax
+endif
+let b:spell_options="contained"
+let &cpo = s:cpo_save
+unlet s:cpo_save
+"}}}
 " vim:foldmethod=marker

@@ -29,9 +29,10 @@ abstract class SomeClass extends OtherClass implements SomeInterface, vendor\Oth
     public              string  myMethod ( void )
     public static       string  otherMethod( int $a, MyType $b1 = null, bool $c = false, string $d = 'default value' )
     protected           int     doSomething( int $a [, MyType $b [, bool $c [, string $d]]] )
-    protected static    int     doSomethingElse()
+    protected static    int     doSomethingElse()  // comment
     public              int[]   my( void )
     protected static myns\mytype[] m( void )
+    int doSome( void ) // control
 
     /* Inherited methods */
     public string OtherClass::someMethod( void )
@@ -50,4 +51,4 @@ class MyClass /* comment */ implements SomeInterface
 
 }
 
-namespace test\myns\app_ns;
+ 
