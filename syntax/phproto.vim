@@ -1,15 +1,15 @@
 "{{{ Init
-if !exists("main_syntax")
-    if version < 600
-        syntax clear
-    elseif exists("b:current_syntax")
+"if !exists("main_syntax")
+    "if version < 600
+        "syntax clear
+    "elseif exists("b:current_syntax")
         "finish
-        syntax clear
-    endif
-    let main_syntax='phproto'
-endif
-let s:cpo_save = &cpo
-set cpo&vim
+        "syntax clear
+    "endif
+    "let main_syntax='phproto'
+"endif
+"let s:cpo_save = &cpo
+"set cpo&vim
 "}}}
 
 "{{{ Common
@@ -231,12 +231,12 @@ hi phprotoVariable      guifg=#d75f5f   gui=none
 " }}}
 
 "{{{ Init
-let b:current_syntax = "phproto"
-if main_syntax == 'phproto'
-    unlet main_syntax
-endif
-let b:spell_options="contained"
-let &cpo = s:cpo_save
-unlet s:cpo_save
+"let b:current_syntax = "phproto"
+"if main_syntax == 'phproto'
+    "unlet main_syntax
+"endif
+"let b:spell_options="contained"
+"let &cpo = s:cpo_save
+"unlet s:cpo_save
 "}}}
 " vim:foldmethod=marker
