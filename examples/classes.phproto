@@ -20,9 +20,10 @@ abstract class SomeClass extends OtherClass implements SomeInterface, vendor\Oth
     protected static    vendor\Other[]  $_data = NULL ;
 
     /* Methods */
-    public              string  myMethod ( void )
+    public              string  myMethod ( int[] $a = [] )
+    public              int     doSomething ( [ int $a = 0 ] )
     public static       string  otherMethod( int $a, MyType $b1 = null, bool $c = false, string $d = 'default value' )
-    protected           int     doSomething( int $a [, MyType $b [, bool $c [, string $d]]] )
+    protected           int     doSomething( int $a [, MyType $b [, bool $c [, string $d ]]] )
     protected static    int     doSomethingElse()  // comment
     public              int[]   my( void )
     protected static myns\cls[] m( void )
@@ -44,5 +45,6 @@ class MyClass /* comment */ implements SomeInterface
 }
 
 /* Standalone method declaration */
-public      void    myapp\MyClass::myMethod ( void )
-protected   int     MyClass::doSomething ( int $arg_one [, bool $arg_two = false [, myns\MyType $arg_three = null]] )
+public          void    myapp\MyClass::myMethod ( void )
+protected       int     MyClass::doSomething ( int $arg_one [, bool $arg_two = false [, myns\MyType $arg_three = null]] )
+public static   void    MyClass::myMethod ( [ mixed $argument ] )

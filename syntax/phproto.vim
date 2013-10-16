@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: phproto
 " Maintainer: Sarkian <root@dustus.org>
-" Last Change: 2013 Oct 16, 18:57
+" Last Change: 2013 Oct 16, 19:23
 
 if version < 600
     syntax clear
@@ -162,12 +162,14 @@ syn region phprotoClassMethodArgument start="[a-zA-Z0-9_\\\[\]]\+\s\+\$[a-zA-Z0-
     \ contains=phprotoClassMethodArgType,phprotoVariable,phprotoString,phprotoInt,phprotoFloat,phprotoBool,phprotoNull
 
 " Тип аргумента метода
-syn region phprotoClassMethodArgType start="\(,\s*\|(\s*\)\@<=" end="\s\+\$"me=s contained
+syn region phprotoClassMethodArgTypeWrap start="\(,\s*\|(\s*\|(\s*\[\s*\)\@<=" end="\s\+\$"me=s contained contains=phprotoClassMethodArgType
+syn match phprotoClassMethodArgType "[a-zA-Z][a-zA-Z0-9\\\[\]]\+" contained
 "}}}
 
 "{{{ Метод вне класса
-syn match phprotoMethod "^\s*\(public\|protected\|private\|static\|final\|abstract\)\s\+[a-zA-Z_\\][a-zA-Z0-9_\\:]*\s\+[a-zA-Z_\\][a-zA-Z0-9\_\\:]*\s*([^()]*).*\(;\|$\)"
-    \ contains=phprotoComment,phprotoClassMethodKeyword,phprotoClassMethodType,phprotoClassMethodNameAndArgs
+"syn match phprotoMethod "^\s*\(public\|protected\|private\|static\|final\|abstract\)\s\+[a-zA-Z_\\][a-zA-Z0-9_\\:]*\s\+[a-zA-Z_\\][a-zA-Z0-9\_\\:]*\s*([^()]*).*\(;\|$\)"
+syn match phprotoMethod "\(public\|protected\|private\|static\|final\|abstract\)\s\+[^()]\+([^()]*).*\(;\|$\)"
+    \ contains=phprotoClassMethodKeyword,phprotoClassMethodDefinition,phprotoComment
 "}}}
 
 "{{{ Функции

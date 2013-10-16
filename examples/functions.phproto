@@ -7,3 +7,4 @@ void myotherfunc ( int $arg )
 
     /* With indent */
     myns\MyType myFunction ( void )
+
