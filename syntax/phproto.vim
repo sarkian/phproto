@@ -1,12 +1,12 @@
 " Vim syntax file
 " Language: phproto
 " Maintainer: Sarkian <root@dustus.org>
-" Last change: 2013 Oct 15
+" Last Change: 2013 Oct 16, 18:57
 
 if version < 600
     syntax clear
 elseif exists("b:current_syntax")
-    finish 
+    "finish 
 endif
 
 syn sync fromstart
@@ -81,7 +81,7 @@ syn match phprotoClassImplementsInterfaceName "[a-zA-Z][a-zA-Z0-9_\\]\+" contain
 
 " Тело класса
 syn region phprotoClassBody start="\({\)\@<=" end="}\@=" contained
-    \ contains=phprotoComment,phprotoMethod,phprotoClassUse,phprotoClassConstant,phprotoClassProperty,phprotoClassMethod
+    \ contains=phprotoComment,phprotoClassUse,phprotoClassConstant,phprotoClassProperty,phprotoClassMethod
 "}}}
 
 "{{{ Директивы use
@@ -165,8 +165,13 @@ syn region phprotoClassMethodArgument start="[a-zA-Z0-9_\\\[\]]\+\s\+\$[a-zA-Z0-
 syn region phprotoClassMethodArgType start="\(,\s*\|(\s*\)\@<=" end="\s\+\$"me=s contained
 "}}}
 
+"{{{ Метод вне класса
+syn match phprotoMethod "^\s*\(public\|protected\|private\|static\|final\|abstract\)\s\+[a-zA-Z_\\][a-zA-Z0-9_\\:]*\s\+[a-zA-Z_\\][a-zA-Z0-9\_\\:]*\s*([^()]*).*\(;\|$\)"
+    \ contains=phprotoComment,phprotoClassMethodKeyword,phprotoClassMethodType,phprotoClassMethodNameAndArgs
+"}}}
+
 "{{{ Функции
-syn match phprotoFunction "^\s*[a-zA-Z_\\][a-zA-Z0-9_\\:]*\s\+[a-zA-Z_\\][a-zA-Z0-9\_\\:]*\s*([^()]*).*\(;\|$\)"
+syn match phprotoFunction "^\s*[a-zA-Z_\\][a-zA-Z0-9_\\:]*\s\+[a-zA-Z_\\][a-zA-Z0-9\_\\]*\s*([^()]*).*\(;\|$\)"
     \ contains=phprotoComment,phprotoFunctionType,phprotoClassMethodNameAndArgs
 
 " Возвращаемый тип функции
@@ -219,7 +224,7 @@ hi phprotoComment       guifg=#d75f00   gui=none
 hi phprotoString        guifg=#5faf00   gui=none
 hi phprotoInt           guifg=#5faf5f   gui=none
 hi phprotoFloat         guifg=#875fff   gui=none
-hi phprotoBool          guifg=#d75f5f   gui=italic
+hi phprotoBool          guifg=#5faf5f   gui=italic
 hi phprotoNull          guifg=#cdcdcd   gui=italic
 hi phprotoVoid          guifg=#a0a0a0   gui=none
 hi phprotoName          guifg=#799aff   gui=none

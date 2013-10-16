@@ -4,7 +4,6 @@ namespace test\myns\app_ns;
 
 void myfunc( void ) // comment
 void myotherfunc ( int $arg )
-int MyClass::myMethod ( void )
 
     /* With indent */
-    myns\MyType myns\MyClass::myMethod (  )
+    myns\MyType myFunction ( void )

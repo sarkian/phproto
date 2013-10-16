@@ -43,4 +43,6 @@ class MyClass /* comment */ implements SomeInterface
 
 }
 
- 
+/* Standalone method declaration */
+public      void    myapp\MyClass::myMethod ( void )
+protected   int     MyClass::doSomething ( int $arg_one [, bool $arg_two = false [, myns\MyType $arg_three = null]] )
